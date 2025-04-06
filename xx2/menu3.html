@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Three Black Circle Buttons</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align items at the top */
+    }
+
+    body {
+      padding-top: 40px; /* 1cm space from the top */
+    }
+
+    .button-container {
+      display: flex;
+      gap: 40px; /* 1cm gap between buttons */
+    }
+
+    .circle-button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: black;
+      border: none;
+      cursor: pointer;
+    }
+
+    .circle-button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="button-container">
+    <button class="circle-button" onclick="window.location.href='back.html'"></button>
+    <button class="circle-button" onclick="window.location.href='menu2.html'"></button>
+    <button class="circle-button" onclick="window.location.href='menu3.html'"></button>
+  </div>
+
+  <!-- Error sound (Make sure the path is correct) -->
+  <audio id="error-sound" src="pop.mp3" preload="auto"></audio>
+
+  <script>
+    // Function to handle index button click (error sound)
+    function indexAction() {
+      const errorSound = document.getElementById('error-sound');
+      errorSound.play();
+    }
+  </script>
+
+</body>
+</html>

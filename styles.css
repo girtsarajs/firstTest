@@ -1,0 +1,81 @@
+:root {
+    --index-background: #f0f0f0;
+    --menu2-background: rgb(255, 182, 193);
+    --menu3-background: yellow;
+}
+
+/* Page-specific background colors */
+body.index {
+    background-color: var(--index-background);
+}
+
+body.menu2 {
+    background-color: var(--menu2-background);
+}
+
+body.menu3 {
+    background-color: var(--menu3-background);
+}
+
+
+
+/* General styles for all buttons and menu */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  /* The container for the buttons */
+  .button-container {
+    display: flex;
+    gap: 40px; /* Gap between buttons */
+    position: absolute; /* To position the button container */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Button style for all buttons */
+  .circle-button {
+    width: 40px; /* Button width */
+    height: 40px; /* Button height */
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.9); /* Black with 80% opacity */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Button hover effect */
+  .circle-button:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Black with 60% opacity on hover */
+  }
+  
+
+/* Specific page styles */
+  body.index {
+    background-color: #f0f0f0; 
+  }
+  
+  body.menu2 {
+    background-color: rgb(255, 182, 193); 
+  }
+  
+  body.menu3 {
+    background-color: yellow; 
+  }
+
+  /* Specific page styles (optional if different pages need different positioning) */
+  body.index .button-container {
+    top: 45%; /* Index page button container */
+  }
+  
+  body.menu2 .button-container,
+  body.menu3 .button-container {
+    top: 40px; /* Menu2 and Menu3 button container */
+  }
+  

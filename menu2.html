@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Index Page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="menu2">
+  <div class="button-container">
+    <button class="circle-button" onclick="moveMenu('index.html', this)"></button>
+    <button class="circle-button" onclick="moveMenu('menu2.html', this)"></button>
+    <button class="circle-button" onclick="moveMenu('menu3.html', this)"></button>
+  </div>
+
+  <script>
+    function moveMenu(page, button) {
+      const menu = document.querySelector('.button-container');
+
+        if (page === 'menu2.html') {
+            window.location.href = page;
+            return; // Skip animation and immediate page load
+        } else if (page === 'index.html') {
+                      // Get the background color from CSS based on the page
+          let pagee = page.slice(0, -5); // Remove '.html' from the page name
+          let newBackgroundColor = getComputedStyle(document.documentElement).getPropertyValue(`--${pagee}-background`);
+
+          // Remove any extra whitespace
+          newBackgroundColor = newBackgroundColor.trim();
+
+          // Set the background color with a smooth transition
+          document.body.style.transition = 'background-color 1s ease'; // Smooth transition for background color
+          document.body.style.backgroundColor = newBackgroundColor;
+
+            let topPosition = 45; // default for menu3 and menu2
+            // Add class for transition
+            menu.style.transition = 'top 1s ease'; // Add transition for movement
+            menu.style.top = `${topPosition}%`;
+
+           
+        }  else {
+                      // Get the background color from CSS based on the page
+          let pagee = page.slice(0, -5); // Remove '.html' from the page name
+          let newBackgroundColor = getComputedStyle(document.documentElement).getPropertyValue(`--${pagee}-background`);
+
+          // Remove any extra whitespace
+          newBackgroundColor = newBackgroundColor.trim();
+
+          // Set the background color with a smooth transition
+          document.body.style.transition = 'background-color 1s ease'; // Smooth transition for background color
+          document.body.style.backgroundColor = newBackgroundColor;
+
+            let topPosition = 40; // default for menu3 and menu2     
+            // Add class for transition
+            menu.style.transition = 'top 1s ease'; // Add transition for movement
+            menu.style.top = `${topPosition}px`;
+        }
+            // After the animation is complete, change the location
+            setTimeout(() => {
+            window.location.href = page;
+            }, 1000); // Match animation duration
+        
+    }
+  </script>
+</body>
+</html>

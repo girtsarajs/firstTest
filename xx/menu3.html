@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu1 and Menu2</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0; /* Background for Menu1 */
+      margin: 0;
+    }
+
+    /* Menu 1 */
+    .menu1 .circle-button {
+      width: 1cm;
+      height: 1cm;
+      border-radius: 50%;
+      background-color: black;
+      border: none;
+      cursor: pointer;
+    }
+
+    .menu1 .circle-button:hover {
+      background-color: #333;
+    }
+
+    /* Menu 2 */
+    .menu2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #87CEEB; /* Light blue background for Menu2 */
+      padding-top: 1cm; /* Space the buttons 1cm from the top */
+      display: flex;
+      justify-content: center;
+      gap: 1cm;
+    }
+
+    .menu2 .circle-button {
+      width: 1cm;
+      height: 1cm;
+      border-radius: 50%;
+      background-color: black;
+      border: none;
+      cursor: pointer;
+    }
+
+    .menu2 .circle-button:hover {
+      background-color: #333;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Menu 1 -->
+  <div class="menu1">
+    <button class="circle-button"></button>
+    <button class="circle-button"></button>
+    <button class="circle-button"></button>
+  </div>
+
+  <!-- Menu 2 -->
+  <div class="menu2">
+    <button class="circle-button"></button>
+    <button class="circle-button"></button>
+    <button class="circle-button"></button>
+  </div>
+
+</body>
+</html>
