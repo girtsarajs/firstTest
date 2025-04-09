@@ -6,19 +6,45 @@
   <link rel="icon" type="image/png" href="images/favicon_menu3.png">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="menu3">
+<body class="menu3" style="min-height: 760px">
   <div class="button-container">
     <button class="circle-button" onclick="moveMenu('index.html', this)"></button>
     <button class="circle-button" onclick="moveMenu('menu2.html', this)"></button>
     <button class="circle-button" onclick="moveMenu('menu3.html', this)"></button>
   </div>
 
+  <div class="iframe-wrapper">
+    <!-- Automatically load index.html on page load -->
+    <iframe id="contentFrame" src="test.html" title="Embedded Page"></iframe>
+  </div>
+
+  <script>
+    function loadPage(url) {
+      const iframeWrapper = document.getElementById('iframe-wrapper');
+      const iframe = document.getElementById('content-frame');
+
+      // Set the iframe source
+      iframe.src = url;
+
+      // Check if the iframe is at its minimum height
+      iframe.onload = function() {
+        if (iframeWrapper.clientHeight >= 600) {
+          iframeWrapper.classList.add('min-height-reached');
+        } else {
+          iframeWrapper.classList.remove('min-height-reached');
+        }
+      };
+    }
+  </script>
+
   <script>
     function moveMenu(page, button) {
       const menu = document.querySelector('.button-container');
+      const iframeWrapper = document.querySelector('.iframe-wrapper');
+
 
         if (page === 'menu3.html') {
-            window.location.href = page;
+            /*window.location.href = page;*/
             return; // Skip animation and immediate page load
         } else if (page === 'index.html') {
                       // Get the background color from CSS based on the page
@@ -31,6 +57,10 @@
           // Set the background color with a smooth transition
           document.body.style.transition = 'background-color 1s ease'; // Smooth transition for background color
           document.body.style.backgroundColor = newBackgroundColor;
+
+           // Fade out the iframe with a smooth transition
+        iframeWrapper.style.transition = 'opacity 1s ease';
+        iframeWrapper.style.opacity = '0'; // Fade out the iframe
 
             let topPosition = 45; // default for menu3 and menu2
             // Add class for transition
@@ -50,6 +80,10 @@
           document.body.style.transition = 'background-color 1s ease'; // Smooth transition for background color
           document.body.style.backgroundColor = newBackgroundColor;
 
+             // Fade out the iframe with a smooth transition
+        iframeWrapper.style.transition = 'opacity 1s ease';
+        iframeWrapper.style.opacity = '0'; // Fade out the iframe
+
             let topPosition = 40; // default for menu3 and menu2     
             // Add class for transition
             menu.style.transition = 'top 1s ease'; // Add transition for movement
@@ -62,5 +96,16 @@
         
     }
   </script>
+
+<script>
+  // JavaScript to make iframe fade in after page load
+  document.addEventListener("DOMContentLoaded", function() {
+    const iframeWrapper = document.querySelector('.iframe-wrapper');
+    
+    // Initially fade in the iframe after the page has loaded
+    iframeWrapper.style.opacity = '1'; // This triggers the fade-in transition
+  });
+</script>
+
 </body>
 </html>
