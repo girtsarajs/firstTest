@@ -15,6 +15,17 @@
   position: relative;
 }
 
+.background p {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    margin: 0;
+    color: black; /* Or any color you prefer */
+    font-size: 1.2rem; /* Optional styling */
+    z-index: 2; /* Make sure it's above background/overlay */
+  }
+
 /* Yellow overlay on top */
 .overlay {
   position: absolute;
@@ -22,7 +33,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 0, 0.9); /* 90% Yellow */
+  background-color: #21b1ffe6; /* 90%  The last two characters e6 represent ~90% opacity (e6 in hex = 230/255 ≈ 0.9)  */
   pointer-events: none; /* Ensures overlay doesn't interfere with hover effect */
 }
 

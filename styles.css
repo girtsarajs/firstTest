@@ -1,24 +1,24 @@
 :root {
     --index-background: #f0f0f0;
-    --menu2-background: rgb(255, 182, 193);
-    --menu3-background: yellow;
+    --menu2-background: #ff218c;
+    --menu3-background: #ffd800;
+    --about_me-background: #21b1ff;
+
 }
 
 /* Page-specific background colors */
 body.index {
     background-color: var(--index-background);
 }
-
 body.menu2 {
     background-color: var(--menu2-background);
-
 }
-
 body.menu3 {
     background-color: var(--menu3-background);
 }
-
-
+body.about_me {
+  background-color: var(--about_me-background);
+}
 
 /* General styles for all buttons and menu */
 body {
@@ -70,8 +70,8 @@ body {
     max-height: 600px; /* Maximum height of iframe */
     margin: 0 auto; /* Center the iframe */
     z-index: 0; /* Set buttons' z-index to make them not on the bottom */
-    opacity: 0; /* Initially set opacity to 0 for fade-in effect */
-    transition: opacity 1s ease-in; /* Add transition for fade-in */
+    opacity: 1; /* Initially set opacity to 0 for fade-in effect */
+    transition: none /*opacity 1s ease-in; /* Add transition for fade-in */
   }
 
   /* Add class to control the visibility when the iframe is fading out */
@@ -105,13 +105,14 @@ body {
   body.index {
     background-color: #f0f0f0; 
   }
-  
   body.menu2 {
-    background-color: rgb(255, 182, 193); 
+    background-color: #ff218c; 
   }
-  
   body.menu3 {
-    background-color: yellow; 
+    background-color: #ffd800; 
+  }
+  body.about_me {
+    background-color: #21b1ff; 
   }
 
   body.test {
@@ -124,7 +125,8 @@ body {
   }
   
   body.menu2 .button-container,
-  body.menu3 .button-container {
+  body.menu3 .button-container,
+  body.about_me .button-container {
     top: 40px; /* Menu2 and Menu3 button container */
   }
   
