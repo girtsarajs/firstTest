@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Girts Arajs - about me</title>
+  <title>Girts Arajs - laser game</title>
   <link rel="icon" type="image/png" href="images/favicon_index.png">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="about_me" style="min-height: 760px">
+<body class="game" style="min-height: 760px">
   <div class="button-container">
     <button class="circle-button" onclick="moveMenu('index.html', this)"></button>
     <button class="circle-button" onclick="moveMenu('menu2.html', this)"></button>
@@ -16,7 +16,7 @@
 
   <div class="iframe-wrapper">
     <!-- Automatically load index.html on page load -->
-    <iframe id="contentFrame" src="iframe_about_me.html" title="Embedded Page"></iframe>
+    <iframe id="contentFrame" src="iframe_game.html" title="Embedded Page"></iframe>
   </div>
 
   <script>
@@ -44,7 +44,7 @@
       const iframeWrapper = document.querySelector('.iframe-wrapper');
 
 
-        if (page === 'about_me.html') {
+        if (page === 'game.html') {
             /*window.location.href = page;*/
             return; // Skip animation and immediate page load
         } else if (page === 'index.html') {

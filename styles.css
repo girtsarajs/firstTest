@@ -1,7 +1,7 @@
 :root {
     --index-background: #f0f0f0;
     --menu2-background: #ff218c;
-    --menu3-background: #ffd800;
+    --game-background: #ffd800;
     --about_me-background: #21b1ff;
 
 }
@@ -13,8 +13,8 @@ body.index {
 body.menu2 {
     background-color: var(--menu2-background);
 }
-body.menu3 {
-    background-color: var(--menu3-background);
+body.game {
+    background-color: var(--game-background);
 }
 body.about_me {
   background-color: var(--about_me-background);
@@ -108,7 +108,7 @@ body {
   body.menu2 {
     background-color: #ff218c; 
   }
-  body.menu3 {
+  body.game {
     background-color: #ffd800; 
   }
   body.about_me {
@@ -125,7 +125,7 @@ body {
   }
   
   body.menu2 .button-container,
-  body.menu3 .button-container,
+  body.game .button-container,
   body.about_me .button-container {
     top: 40px; /* Menu2 and Menu3 button container */
   }
