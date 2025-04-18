@@ -232,7 +232,7 @@ canvas.addEventListener("mousedown", (e) => {
   const cx = mouseX - x;
   const cy = mouseY - y;
   const centerDist = Math.sqrt(cx * cx + cy * cy);
-  if (centerDist >= 55 && centerDist <= 60) {
+  if (centerDist >= 0 && centerDist <= 60) {
     isDragging = true;
     return;
   }
