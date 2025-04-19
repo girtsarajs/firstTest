@@ -107,6 +107,8 @@ body {
   }
   body.menu2 {
     background-color: #ff218c; 
+    color: black; /* Or any color you prefer */
+    font-size: 1.2rem; /* Optional styling */
   }
   body.game {
     background-color: #ffd800; 
