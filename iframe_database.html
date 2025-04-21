@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Girts Arajs - Data base</title>
+  <title>Girts Arajs - database</title>
   <link rel="stylesheet" href="styles_database.css">
 </head>
 <!-- Google tag (gtag.js) -->
@@ -13,14 +13,15 @@
   gtag('js', new Date());
   gtag('config', 'G-7YBH6VMPT0');
 </script>
+
+
 <body>
   <div class="background">
-    <p>database experiments:</p><br>
+    <p>database experiments:</p><br><br>
     
     <p>total visits: <span id="totalVisits">0</span></p>
     <p>unique visitors: <span id="uniqueVisitors">0</span></p>
-    <p>top 5 visitor visits:</p>
-    <p><ol id="topVisitorsList"></ol></p>
+    <p>Top 5 visitor visits: <span id="topVisitorsList"></span></p><br><br>
 
   <!-- Firebase SDK and Config (as explained in the previous steps) -->
   <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app-compat.js"></script>
@@ -116,40 +117,134 @@
 
 
           // Get the top 5 visitors
-          const topVisitorsRef = firebase.database().ref("visitors");
-          topVisitorsRef
-            .orderByChild("visits")
-            .limitToLast(5)
-            .on("value", (snapshot) => {
-              const visitors = snapshot.val();
-              const topVisitorsList = document.getElementById("topVisitorsList");
-              topVisitorsList.innerHTML = "";
+const topVisitorsRef = firebase.database().ref("visitors");
+topVisitorsRef
+  .orderByChild("visits")
+  .limitToLast(5)
+  .on("value", (snapshot) => {
+    const visitors = snapshot.val();
+    const topVisitorsList = document.getElementById("topVisitorsList");
+    topVisitorsList.innerHTML = "";
 
-              if (visitors) {
-                // Convert visitors object to an array
-                const visitorsArray = Object.entries(visitors).map(
-                  ([visitorId, data]) => ({
-                    visitorId: visitorId,
-                    visits: data.visits,
-                  })
-                );
+    if (visitors) {
+      // Convert visitors object to an array
+      const visitorsArray = Object.entries(visitors).map(
+        ([visitorId, data]) => ({
+          visitorId: visitorId,
+          visits: data.visits,
+        })
+      );
 
-                // Sort the array in descending order of visits
-                visitorsArray.sort((a, b) => b.visits - a.visits);
+      // Sort the array in descending order of visits
+      visitorsArray.sort((a, b) => b.visits - a.visits);
 
-                // Display the top 5 visitors
-                visitorsArray.forEach((visitor) => {
-                  const listItem = document.createElement("li");
-                  listItem.textContent =
-                    //"Visitor " + visitor.visitorId + ": " + visitor.visits;
-                    visitor.visits;
+      // Create a single string with top 5 visits separated by "/"
+      const topVisitorsString = visitorsArray
+        .map((visitor) => `${visitor.visits}`)
+        .join(" / ");
 
-                  topVisitorsList.appendChild(listItem);
-                });
-              }
-            });
+      // Display the top 5 visitors in one line
+      topVisitorsList.textContent = topVisitorsString;
+    }
+  });
 
       </script>
+
+
+<!-- 
+1. make new option for comments in static github web page
+2. database in firebase
+3. every one can post
+4. in web page can be seen lasts 10 coments: date, time + comment
+ -->
+
+ <!--<p>comment:</p>-->
+ <style>
+  #commentInput::placeholder {
+    color: black;
+  }
+</style>
+
+
+ <textarea id="commentInput" placeholder="comment here and hit enter", resize:none, maxlength="60" 
+ style="
+ width: 520px; 
+ height: 26px; 
+ background-color: rgba(255, 255, 255, 0.2); 
+ border: 0px solid #ff218c; 
+ border-radius: 5px; 
+ resize: none; 
+ padding: 5px;
+ font-size: 0.8rem; 
+ font-family: Menlo, Monaco, Consolas;
+ color: black;"></textarea><br>
+
+<style>
+  #commentInput:focus {
+    outline: none; /* Remove default focus outline */
+  }
+</style>
+
+ <!--<button onclick="submitComment()">submit</button>-->
+<p>last 10 comments from <span id="totalComments">0</span>:</p>
+<div><br><p id="commentList"></p></div>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-database-compat.js"></script>
+
+<script>
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // Function to submit a comment
+  function submitComment() {
+    const comment = document.getElementById("commentInput").value.trim();
+    if (comment.length === 0) return;
+
+    const timestamp = new Date().toISOString();
+    db.ref("comments").push({
+      text: comment,
+      timestamp: timestamp
+    });
+
+    document.getElementById("commentInput").value = "";
+  }
+
+  // Add event listener to submit comment on Enter key press
+  document.getElementById("commentInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Prevent new line on Enter
+      submitComment();
+    }
+  });
+
+  // Listen to new comments and update the comment list
+  db.ref("comments").on("value", (snapshot) => {
+    const comments = snapshot.val();
+    const list = document.getElementById("commentList");
+    const totalComments = document.getElementById("totalComments");
+    list.innerHTML = "";
+
+    if (comments) {
+      const sorted = Object.values(comments).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+      // Update total comments count
+      totalComments.textContent = Object.keys(comments).length;
+
+      // Display the last 10 comments
+      const last10Comments = sorted.slice(0, 10);
+      last10Comments.forEach(comment => {
+        const commentDiv = document.createElement("div");
+        commentDiv.textContent = comment.text;
+        list.appendChild(commentDiv);
+      });
+    }
+  });
+</script>
+
+  </script>
+
 
   </div>
   

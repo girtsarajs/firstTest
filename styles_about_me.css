@@ -22,7 +22,8 @@
     right: 40px;
     margin: 0;
     color: black; /* Or any color you prefer */
-    font-size: 1.2rem; /* Optional styling */
+    font-size: 0.8rem; /* Optional styling */
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     z-index: 2; /* Make sure it's above background/overlay */
   }
 
