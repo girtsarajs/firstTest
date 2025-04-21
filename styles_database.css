@@ -26,6 +26,18 @@
     z-index: 2; /* Make sure it's above background/overlay */
   }
 
+.background ol {
+    position: static;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    padding-left: 18px;
+    margin: 0;
+    color: black; /* Or any color you prefer */
+    font-size: 1.2rem; /* Optional styling */
+    z-index: 2; /* Make sure it's above background/overlay */
+  }
+
 /* Yellow overlay on top */
 .overlay {
   position: absolute;
