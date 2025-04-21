@@ -39,3 +39,7 @@
   z-index: 1; /* Make sure it's above background/overlay */
 
 }
+
+html, body {
+  overflow-x: hidden;
+}

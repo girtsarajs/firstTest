@@ -36,7 +36,7 @@ body {
   /* The container for the buttons */
   .button-container {
     display: flex;
-    gap: 40px; /* Gap between buttons */
+    gap: 30px; /* Gap between buttons */
     position: absolute; /* To position the button container */
     left: 50%;
     transform: translateX(-50%);
