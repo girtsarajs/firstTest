@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Girts Arajs - database</title>
-  <link rel="stylesheet" href="styles_database.css">
+  <link rel="icon" type="image/png" href="images/favicon_index.png">
+  <link rel="stylesheet" href="styles_iframe.css">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7YBH6VMPT0"></script>
@@ -16,7 +17,9 @@
 
 
 <body>
-  <div class="background">
+  <div class="background" id="database">
+  <div class="overlay" id="database"></div>
+  <!--<div class="background">-->
     <p>database experiments:</p><br><br>
   <p>total visits: <span id="totalVisits">0</span></p>
     <p>unique visitors: <span id="uniqueVisitors">0</span></p>
@@ -151,18 +154,26 @@ topVisitorsRef
 
 
 <!-- 
+
+
+
+
 1. make new option for comments in static github web page
 2. database in firebase
 3. every one can post
 4. in web page can be seen lasts 10 coments: date, time + comment
+
+
+
+
  -->
 
- <!--<p>comment:</p>-->
+ <!--<p>comment:</p>
  <style>
   #commentInput::placeholder {
     color: black;
   }
-</style>
+</style>-->
 
 
  <textarea id="commentInput" placeholder="comment here and hit enter", resize:none, maxlength="60" 
@@ -176,21 +187,47 @@ topVisitorsRef
  padding: 5px;
  font-size: 0.8rem; 
  font-family: Menlo, Monaco, Consolas;
- color: black;"></textarea><br>
+ color: black;
+ z-index: 99;
+ position: relative;
+ outline: none;"></textarea><br>
 
 <style>
+  /* Make placeholder text black */
+  #commentInput::placeholder {
+    color: rgba(0, 0, 0, 1);
+  }
+  
+</style>
+
+<script>
+  // Focus on the textarea when the page is loaded
+  window.onload = function() {
+    document.getElementById("commentInput").focus();  // Set focus on the textarea
+  }
+</script>
+
+<!--<style>
   #commentInput:focus {
     outline: none; /* Remove default focus outline */
   }
-</style>
+</style>-->
 
  <!--<button onclick="submitComment()">submit</button>-->
 <p>last 10 comments from <span id="totalComments">0</span>:</p>
 <div><br><p id="commentList"></p></div>
 
-<!-- Firebase SDKs -->
+<!-- Firebase SDKs 
 <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-database-compat.js"></script> 
+
+[2025-04-21T18:42:10.905Z]  
+@firebase/database: FIREBASE WARNING: Using an unspecified index. 
+Your data will be downloaded and filtered on the client. 
+Consider adding ".indexOn": "visits" at /visitors to your security rules for better performance. 
+
+
+-->
 
 <script>
   firebase.initializeApp(firebaseConfig);
