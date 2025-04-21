@@ -1,6 +1,6 @@
 :root {
     --index-background: #f0f0f0;
-    --menu2-background: #ff218c;
+    --database-background: #ff218c;
     --game-background: #ffd800;
     --about_me-background: #21b1ff;
 
@@ -10,8 +10,8 @@
 body.index {
     background-color: var(--index-background);
 }
-body.menu2 {
-    background-color: var(--menu2-background);
+body.database {
+    background-color: var(--database-background);
 }
 body.game {
     background-color: var(--game-background);
@@ -105,7 +105,7 @@ body {
   body.index {
     background-color: #f0f0f0; 
   }
-  body.menu2 {
+  body.database {
     background-color: #ff218c; 
     color: black; /* Or any color you prefer */
     font-size: 1.2rem; /* Optional styling */
@@ -126,7 +126,7 @@ body {
     top: 45%; /* Index page button container */
   }
   
-  body.menu2 .button-container,
+  body.database .button-container,
   body.game .button-container,
   body.about_me .button-container {
     top: 40px; /* Menu2 and Menu3 button container */
