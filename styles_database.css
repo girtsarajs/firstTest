@@ -6,10 +6,10 @@
 }
 
 /* Set the background image */
-.background {padding: 40px;
+.background {
+  padding: 40px;
   width: 100vw;
   height: 100vh;
-  /*background-image: url('images/me.jpg'); /* Replace with your image path */
   background-size: cover;
   background-position: center;
   position: relative;

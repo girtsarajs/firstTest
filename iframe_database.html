@@ -15,7 +15,7 @@
 </script>
 <body>
   <div class="background">
-    <p>database experiments (firebase):</p><br>
+    <p>database experiments:</p><br>
     
     <p>total visits: <span id="totalVisits">0</span></p>
     <p>unique visitors: <span id="uniqueVisitors">0</span></p>
@@ -111,6 +111,9 @@
               document.getElementById("uniqueVisitors").innerText =
                 snapshot.val();
             });
+
+          
+
 
           // Get the top 5 visitors
           const topVisitorsRef = firebase.database().ref("visitors");
