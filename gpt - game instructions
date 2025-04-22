@@ -1,0 +1,7 @@
+add to this code: 
+1. before click, the circle laser rotates. 
+2. when the laser hits the center of one of the mirror, circle laser stops rotating, but the mirror starts rotating. 
+3. when the laser hits next mirror center, the 1st mirror stops and the next starts to rotate. 
+4. and so on.. 
+5. at the end, the laser should hit the center. 
+6. the code:

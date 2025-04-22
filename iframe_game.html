@@ -1,42 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Girts Arajs - laser game</title>
   <link rel="icon" type="image/png" href="images/favicon_index.png">
-  <link rel="stylesheet" href="styles_iframe.css" />
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mist-container {
+      width: 600px;
+      height: 600px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cloud {
+      position: absolute;
+      background: #f0f0f0;
+      border-radius: 50%;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+  </style>
+    <link rel="stylesheet" href="styles_iframe.css" />
+
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7YBH6VMPT0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7YBH6VMPT0');
-</script>
 <body>
-  <canvas id="gameCanvas" width="600" height="600"></canvas>
+    
+  <div class="mist-container" id="container">
+  <canvas id="gameCanvas" width="600" height="600"></canvas></div>
   <script src="game.js"></script>
+  <script>
+    const container = document.getElementById("container");
+    const W = 600, H = 600;
+
+    function random(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function createCloud(size) {
+      const cloud = document.createElement("div");
+      cloud.className = "cloud";
+      cloud.style.width = size + "px";
+      cloud.style.height = size + "px";
+      cloud.size = size;
+
+      // Apply blur that is 40% of the radius
+      const blur = size * random(0.3, 0.6);
+      cloud.style.filter = `blur(${blur}px)`;
+      
+      return cloud;
+    }
+
+    function initializeClouds() {
+      let clouds = [];
+      for (let i = 0; i < 9; i++) {
+        let cloudSize = random(170, 400);
+        let cloud = createCloud(cloudSize);
+        container.appendChild(cloud);
+        clouds.push({
+          cloud: cloud,
+          x: random(0, W),
+          y: random(0, H),
+          angle: random(0, 360),
+          moved: 0,
+          nextTurn: random(100, 300),
+          speed: random(0.3, 0.9)
+        });
+      }
+      return clouds;
+    }
+
+    let clouds = initializeClouds();
+
+    function update() {
+      clouds.forEach(cloudData => {
+        const { cloud, x, y, angle, moved, nextTurn, speed } = cloudData;
+
+        // Adjust direction slightly after moving certain distance
+        if (moved > nextTurn) {
+          cloudData.angle += random(-10, 10); // Small direction change
+          cloudData.nextTurn = random(100, 300); // Next turn after 100-300px
+          cloudData.moved = 0;
+        }
+
+        const rad = cloudData.angle * Math.PI / 180;
+        const dx = Math.cos(rad) * speed;
+        const dy = Math.sin(rad) * speed;
+
+        cloudData.x += dx;
+        cloudData.y += dy;
+        cloudData.moved += Math.sqrt(dx * dx + dy * dy);
+
+        cloud.style.left = (cloudData.x - cloud.size / 2) + "px";
+        cloud.style.top = (cloudData.y - cloud.size / 2) + "px";
+
+        // Replace cloud if it goes outside
+        if (cloudData.x < -cloud.size || cloudData.x > W + cloud.size || cloudData.y < -cloud.size || cloudData.y > H + cloud.size) {
+          cloud.remove();
+          const newCloudSize = random(170, 400);
+          const newCloud = createCloud(newCloudSize);
+
+          // Reposition outside edge
+          const edge = Math.floor(random(0, 4)); // 0=top, 1=right, 2=bottom, 3=left
+          switch (edge) {
+            case 0: 
+              cloudData.x = random(0, W); 
+              cloudData.y = -newCloudSize; 
+              cloudData.angle = random(20, 160); 
+              break;
+            case 1: 
+              cloudData.x = W + newCloudSize; 
+              cloudData.y = random(0, H); 
+              cloudData.angle = random(110, 250); 
+              break;
+            case 2: 
+              cloudData.x = random(0, W); 
+              cloudData.y = H + newCloudSize; 
+              cloudData.angle = random(200, 340); 
+              break;
+            case 3: 
+              cloudData.x = -newCloudSize; 
+              cloudData.y = random(0, H); 
+              cloudData.angle = random(-70, 70); 
+              break;
+          }
+
+          newCloud.style.left = (cloudData.x - newCloudSize / 2) + "px";
+          newCloud.style.top = (cloudData.y - newCloudSize / 2) + "px";
+          container.appendChild(newCloud);
+          cloudData.cloud = newCloud;
+          cloudData.moved = 0;
+          cloudData.nextTurn = random(100, 300);
+        }
+      });
+
+      requestAnimationFrame(update);
+    }
+
+    update();
+  </script>
 </body>
 </html>
-
-
-<!--
-
-1. make a game, using html, css, javascript, and give 3 files
-2. the size is 600 x 600 pixels, background #ffd800, border 0px
-3. in the random place is 20px round black circle, it can not be closer than 40px to the border
-4. from the circle ir going out line - red laser - on random direction
-5. the border 600x600px is like a mirror. it reflects the laser 10 times
-
-6. i can click the laser and change direction - click and hold
-
-7. add a mirror 30x5px randomly in area. not closer to border, circle 40px. i can click anh hold on it and rotate it.
-
-
-
-
-
-
--->
